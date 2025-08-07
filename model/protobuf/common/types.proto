@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package assetbrain.common;
+
+import "google/protobuf/timestamp.proto";
+import "assetbrain/common/enums.proto";
+
+option go_package = "github.com/asset-brain/proto/common";
+
+// EntityID uniquely identifies an entity by kind and name
+message EntityID {
+    EntityKind kind = 1;            // The type of entity
+    string name = 2;                // Unique name within the kind
+}
+
+// RelationshipProperties stores temporal information about relationships
+message RelationshipProperties {
+    google.protobuf.Timestamp established_date = 1;    // When relationship was created
+    google.protobuf.Timestamp last_verified = 2;       // Last time relationship was validated  
+    google.protobuf.Timestamp expires_date = 3;        // When relationship ends (for leases, contracts)
+}

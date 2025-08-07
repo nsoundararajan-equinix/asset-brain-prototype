@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package assetbrain.core;
+
+import "google/protobuf/timestamp.proto";
+import "assetbrain/common/enums.proto";
+import "assetbrain/common/types.proto";
+import "assetbrain/entities/customer.proto";
+import "assetbrain/entities/product.proto";
+import "assetbrain/entities/datacenter.proto";
+import "assetbrain/entities/utility.proto";
+import "assetbrain/entities/ups.proto";
+import "assetbrain/entities/pdu.proto";
+import "assetbrain/entities/cage.proto";
+import "assetbrain/entities/cabinet.proto";
+
+option go_package = "github.com/asset-brain/proto/core";
+
+// Asset represents any infrastructure or commercial entity in the UxM model
+// Following the network team's single-entity pattern with tags for state management
+message Asset {
+    assetbrain.common.EntityID id = 1;              // EntityKind + name identifier
+    int64 version = 2;                              // Incremental versioning for immutable storage
+    repeated assetbrain.common.Tags tags = 3;       // State and classification tags
+    
+    // Entity-specific attributes using oneof pattern (like network team)
+    oneof entity = 4 {
+        assetbrain.entities.Customer customer_attr = 5;
+        assetbrain.entities.Product product_attr = 6;
+        assetbrain.entities.DataCenter datacenter_attr = 7;
+        assetbrain.entities.Utility utility_attr = 8;
+        assetbrain.entities.UPS ups_attr = 9;
+        assetbrain.entities.PDU pdu_attr = 10;
+        assetbrain.entities.Cage cage_attr = 11;
+        assetbrain.entities.Cabinet cabinet_attr = 12;
+    }
+    
+    bool is_deleted = 13;                           // Soft delete flag
+    google.protobuf.Timestamp created_at = 14;      // Creation timestamp
+    google.protobuf.Timestamp updated_at = 15;      // Last update timestamp
+}

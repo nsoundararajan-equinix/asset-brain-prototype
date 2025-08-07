@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// Cage represents a secure, customer-leased space within a DataCenter
+message Cage {
+    string name = 1;                // Cage identifier (e.g., "Cage-A1")
+    double power_capacity_kw = 2;   // Power capacity allocated to this cage
+    double space_sqft = 3;          // Space in square feet
+    string security_level = 4;      // Security level (High, Medium, Standard)
+    int32 cabinet_capacity = 5;     // Maximum number of cabinets
+    string access_control = 6;      // Access control method (Biometric, Card, Key)
+    string floor_location = 7;      // Floor location within datacenter
+    bool is_private = 8;            // Whether cage is private or shared
+}

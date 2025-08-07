@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// Product represents a service offering (e.g., Private Cage, Secure Cabinet)
+message Product {
+    string name = 1;                // Product name (e.g., "Private Cage", "Secure Cabinet")
+    string description = 2;         // Product description
+    string service_tier = 3;        // Service tier (Premium, Standard, Basic)
+    double power_allocation_kw = 4; // Power allocation in kilowatts
+    string sla_level = 5;           // Service level agreement
+    double monthly_rate = 6;        // Monthly rate in USD
+}

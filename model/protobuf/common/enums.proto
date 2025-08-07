@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+package assetbrain.common;
+
+option go_package = "github.com/asset-brain/proto/common";
+
+// EntityKind defines the types of assets in our infrastructure
+enum EntityKind {
+    EK_UNKNOWN = 0;
+    
+    // Commercial entities
+    EK_CUSTOMER = 1;
+    EK_PRODUCT = 2;
+    
+    // Infrastructure entities  
+    EK_DATACENTER = 3;
+    EK_UTILITY = 4;
+    EK_UPS = 5;
+    EK_PDU = 6;
+    EK_CAGE = 7;
+    EK_CABINET = 8;
+}
+
+// RelationshipKind defines the types of connections between entities
+enum RelationshipKind {
+    RK_UNKNOWN = 0;
+    
+    // Commercial relationships (bidirectional)
+    RK_OWNS = 1;                    // Customer -> Cage
+    RK_OWNED_BY = 2;                // Cage -> Customer
+    
+    // Service relationships (bidirectional)  
+    RK_FULFILLS = 3;                // Cage/Cabinet -> Product
+    RK_FULFILLED_BY = 4;            // Product -> Cage/Cabinet
+    
+    // Physical containment (bidirectional)
+    RK_CONTAINS = 5;                // Cage -> Cabinet, DataCenter -> Cage
+    RK_CONTAINED_BY = 6;            // Cabinet -> Cage, Cage -> DataCenter
+    
+    // Power relationships (bidirectional)
+    RK_FEEDS_POWER_TO = 7;          // Utility -> UPS -> PDU -> Cage -> Cabinet
+    RK_POWERED_BY = 8;              // Cabinet -> Cage -> PDU -> UPS -> Utility
+}
+
+// Tags define the state and classification of entities and relationships
+enum Tags {
+    TG_UNKNOWN = 0;
+    
+    // UxM State tags
+    TG_OBSERVED = 1;                // Current observed state
+    TG_INTENT = 2;                  // Desired intent state  
+    TG_PLAN = 3;                    // Planned execution state
+    
+    // Data source tags
+    TG_BENCHMARK_SUITE = 4;         // Data from benchmark suite migration
+    TG_MANUAL_ENTRY = 5;            // Manually entered data
+    TG_SYSTEM_GENERATED = 6;        // System-generated data
+    
+    // Business classification tags
+    TG_PRODUCTION = 7;              // Production environment
+    TG_STAGING = 8;                 // Staging environment
+    TG_MAINTENANCE = 9;             // Under maintenance
+}

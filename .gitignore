@@ -1,0 +1,102 @@
+# Asset Brain - .gitignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Protocol Buffers generated files
+*_pb2.py
+*_pb2_grpc.py
+*.pb.go
+*.pb.h
+*.pb.cc
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# Documentation (skip MD files from commits as requested)
+*.md
+!README.md  # Keep main README
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Configuration files with secrets
+.env.local
+.env.production
+config/secrets.yaml
+
+# Cloud credentials
+*.json
+!**/model/**/*.json  # Allow proto config files
+
+# Testing
+.coverage
+.pytest_cache/
+.tox/
+.nox/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Asset Brain specific
+/generated/
+/test-data/
+/benchmarks/
+*.benchmark

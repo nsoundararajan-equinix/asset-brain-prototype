@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package assetbrain.core;
+
+import "google/protobuf/timestamp.proto";
+import "assetbrain/common/enums.proto";
+import "assetbrain/common/types.proto";
+
+option go_package = "github.com/asset-brain/proto/core";
+
+// Relationship represents connections between assets in the UxM model
+// Following the network team's bidirectional relationship pattern
+message Relationship {
+    assetbrain.common.EntityID a = 1;                       // Source entity
+    assetbrain.common.EntityID z = 2;                       // Target entity  
+    assetbrain.common.RelationshipKind kind = 3;            // Type of relationship
+    int64 version = 4;                                      // Incremental versioning
+    repeated assetbrain.common.Tags tags = 5;               // State and classification tags
+    
+    // Relationship-specific properties (dates only as agreed)
+    assetbrain.common.RelationshipProperties properties = 6; // Temporal information
+    
+    bool is_deleted = 7;                                    // Soft delete flag
+    google.protobuf.Timestamp created_at = 8;               // Creation timestamp
+    google.protobuf.Timestamp updated_at = 9;               // Last update timestamp
+}

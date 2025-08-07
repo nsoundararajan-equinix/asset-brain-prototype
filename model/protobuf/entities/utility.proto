@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// Utility represents the external power source for a DataCenter
+message Utility {
+    string provider_name = 1;       // Utility company name (e.g., "ConEd", "PG&E")
+    double power_capacity_kw = 2;   // Power capacity in kilowatts
+    double cost_per_kwh = 3;        // Cost per kilowatt-hour
+    string service_type = 4;        // Service type (Primary, Backup, Emergency)
+    string voltage_level = 5;       // Voltage level (High, Medium, Low)
+    string contract_id = 6;         // Utility contract identifier
+}

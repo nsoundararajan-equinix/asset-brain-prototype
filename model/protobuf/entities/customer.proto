@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// Customer represents a client organization leasing space and power
+message Customer {
+    string name = 1;                // Customer organization name
+    string contact_email = 2;       // Primary contact email
+    string contact_phone = 3;       // Primary contact phone
+    string billing_address = 4;     // Billing address
+    string account_manager = 5;     // Assigned account manager
+    string customer_tier = 6;       // Customer tier (Gold, Silver, Bronze)
+}

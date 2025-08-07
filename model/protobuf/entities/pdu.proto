@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// PDU represents a Power Distribution Unit
+message PDU {
+    string name = 1;                // PDU identifier (e.g., "PDU-A1-01")
+    double power_capacity_kw = 2;   // Power capacity in kilowatts
+    double current_load_kw = 3;     // Current power load in kilowatts
+    int32 outlet_count = 4;         // Number of power outlets
+    string voltage_input = 5;       // Input voltage (e.g., "480V", "240V")
+    string voltage_output = 6;      // Output voltage (e.g., "240V", "120V")
+    string pdu_type = 7;            // PDU type (Basic, Metered, Switched, Intelligent)
+    string manufacturer = 8;        // PDU manufacturer
+}

@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package assetbrain.api;
+
+import "assetbrain/core/entity.proto";
+import "assetbrain/core/relationship.proto";
+import "assetbrain/common/types.proto";
+
+option go_package = "github.com/asset-brain/proto/api";
+
+// MutateAssetsRequest represents a batch of asset and relationship mutations
+// Following the network team's MutateModelRequest pattern
+message MutateAssetsRequest {
+    repeated assetbrain.core.Asset assets_to_add = 1;               // Assets to create or update
+    repeated assetbrain.common.EntityID assets_to_delete = 2;       // Assets to soft delete
+    repeated assetbrain.core.Relationship relationships_to_add = 3; // Relationships to create or update
+    repeated assetbrain.core.Relationship relationships_to_delete = 4; // Relationships to soft delete
+    repeated string tags = 5;                                       // Request-level tags
+}
+
+// MutateAssetsResponse represents the result of a mutation operation
+message MutateAssetsResponse {
+    int32 assets_added = 1;                // Number of assets added/updated
+    int32 assets_deleted = 2;              // Number of assets deleted
+    int32 relationships_added = 3;         // Number of relationships added/updated
+    int32 relationships_deleted = 4;       // Number of relationships deleted
+    repeated string warnings = 5;          // Non-fatal warnings
+}
+
+// ValidationError represents a validation failure
+message ValidationError {
+    string field = 1;                      // Field that failed validation
+    string message = 2;                    // Error message
+    string entity_id = 3;                  // Entity ID if applicable
+}
+
+// ValidationErrorDetail contains multiple validation errors
+message ValidationErrorDetail {
+    repeated ValidationError validation_errors = 1;
+}

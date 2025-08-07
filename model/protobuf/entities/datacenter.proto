@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// DataCenter represents the top-level physical location
+message DataCenter {
+    string name = 1;                // DataCenter name (e.g., "NYC-01")
+    string location = 2;            // Physical address/location
+    double total_power_capacity_kw = 3; // Total power capacity in kilowatts
+    double total_space_sqft = 4;    // Total space in square feet
+    string operator = 5;            // DataCenter operator/owner
+    string region = 6;              // Geographic region
+    string timezone = 7;            // Local timezone
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// Cabinet represents a rack for customer equipment within a Cage
+message Cabinet {
+    string name = 1;                // Cabinet identifier (e.g., "CAB-A1-01")
+    double power_draw_kw = 2;       // Current power consumption in kilowatts
+    int32 rack_units = 3;           // Total rack units (typically 42U)
+    int32 used_rack_units = 4;      // Currently used rack units
+    string cabinet_type = 5;        // Cabinet type (Standard, High-Density, Network)
+    double weight_capacity_lbs = 6; // Weight capacity in pounds
+    string cooling_type = 7;        // Cooling type (Air, Liquid, Hybrid)
+    bool has_power_monitoring = 8;  // Whether cabinet has power monitoring
+}

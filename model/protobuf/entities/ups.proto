@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package assetbrain.entities;
+
+option go_package = "github.com/asset-brain/proto/entities";
+
+// UPS represents an Uninterruptible Power Supply
+message UPS {
+    string name = 1;                // UPS identifier (e.g., "UPS-NYC-01")
+    double power_capacity_kw = 2;   // Power capacity in kilowatts
+    double efficiency_percent = 3;  // Power efficiency percentage (0-100)
+    double battery_runtime_minutes = 4; // Battery backup runtime in minutes
+    string manufacturer = 5;        // UPS manufacturer
+    string model = 6;               // UPS model number
+    string installation_date = 7;   // Installation date (ISO format)
+    string maintenance_schedule = 8; // Maintenance schedule
+}
