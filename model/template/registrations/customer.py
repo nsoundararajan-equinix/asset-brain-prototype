@@ -14,13 +14,12 @@ def register_customer_template() -> None:
         allowed_parents=[],  # Customer is a top-level commercial entity
         allowed_parent_relationships=[],  # No parent relationships
         allowed_children=[
-            EntityKind.EK_PRODUCT,      # Customers can own products/services
-            EntityKind.EK_CAGE,         # Customers can lease cages
-            EntityKind.EK_DATACENTER    # Customers can own datacenters
+            EntityKind.EK_PRODUCT,      # Customers buy products/services
+            EntityKind.EK_CAGE,         # Customers own cages
+            EntityKind.EK_CABINET       # Customers own cabinets
         ],
         allowed_child_relationships=[
-            RelationshipKind.RK_OWNS,           # Customer owns assets
-            RelationshipKind.RK_FULFILLED_BY    # Customer fulfilled by products
+            RelationshipKind.RK_OWNS    # Customer owns assets
         ]
     )
     GlobalRegistry.register_template(template)

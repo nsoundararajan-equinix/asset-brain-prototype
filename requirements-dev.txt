@@ -1,0 +1,19 @@
+# Asset Brain Development Requirements (lighter version)
+
+# Google Cloud Dependencies (for development)
+google-cloud-spanner==3.46.0
+
+# Core Dependencies  
+flask==3.0.0
+python-dotenv==1.0.0
+
+# Data Processing
+numpy==1.24.3
+
+# Validation & Schemas
+jsonschema==4.19.1
+
+# Development Dependencies
+pytest==7.4.2
+black==23.9.1
+flake8==6.1.0

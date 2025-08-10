@@ -64,18 +64,26 @@ class TemplateRegistry:
             raise ValueError(f"Missing templates for relationship {a_kind.name} -> {z_kind.name}")
         
         # Check if A can have this relationship with Z
-        if rel_kind not in a_template.allowed_child_relationships:
-            if z_kind not in a_template.allowed_children:
+        if z_kind in a_template.allowed_children:
+            if rel_kind not in a_template.allowed_child_relationships:
                 raise ValueError(
-                    f"{a_kind.name} cannot have {rel_kind.name} relationship with {z_kind.name}"
+                    f"Source {a_kind.name} cannot create {rel_kind.name} relationship with {z_kind.name}"
                 )
+        else:
+            raise ValueError(
+                f"Source {a_kind.name} cannot have relationship with {z_kind.name} (not in allowed children)"
+            )
         
         # Check if Z can accept this relationship from A
-        if rel_kind not in z_template.allowed_parent_relationships:
-            if a_kind not in z_template.allowed_parents:
+        if a_kind in z_template.allowed_parents:
+            if rel_kind not in z_template.allowed_parent_relationships:
                 raise ValueError(
-                    f"{z_kind.name} cannot accept {rel_kind.name} relationship from {a_kind.name}"
+                    f"Target {z_kind.name} cannot accept {rel_kind.name} relationship from {a_kind.name}"
                 )
+        else:
+            raise ValueError(
+                f"Target {z_kind.name} cannot accept relationship from {a_kind.name} (not in allowed parents)"
+            )
 
 
 # Global registry instance (singleton pattern)

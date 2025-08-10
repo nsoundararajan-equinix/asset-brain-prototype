@@ -7,9 +7,9 @@ def register_product_template() -> None:
     """Register Product entity template with business rules."""
     template = EntityTemplate(
         entity_kind=EntityKind.EK_PRODUCT,
-        allowed_parents=[EntityKind.EK_CUSTOMER],  # Products owned by customers
-        allowed_parent_relationships=[RelationshipKind.RK_OWNED_BY],
-        allowed_children=[],  # Products are leaf entities
-        allowed_child_relationships=[]
+        allowed_parents=[EntityKind.EK_CUSTOMER, EntityKind.EK_CAGE, EntityKind.EK_CABINET],  # Products owned by customers and fulfilled by assets
+        allowed_parent_relationships=[RelationshipKind.RK_OWNED_BY, RelationshipKind.RK_FULFILLED_BY],
+        allowed_children=[EntityKind.EK_CAGE, EntityKind.EK_CABINET],  # Products fulfilled by assets
+        allowed_child_relationships=[RelationshipKind.RK_FULFILLED_BY]
     )
     GlobalRegistry.register_template(template)

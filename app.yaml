@@ -1,0 +1,46 @@
+runtime: python311
+
+# App Engine Configuration for Asset Brain
+service: asset-brain-api
+
+# Environment variables
+env_variables:
+  GOOGLE_CLOUD_PROJECT: helix-platform-shared-dev
+  SPANNER_INSTANCE_ID: helix-mdm-account-spanner
+  SPANNER_DATABASE_ID: helix-graph-asset-brain
+  FLASK_ENV: production
+
+# Automatic scaling
+automatic_scaling:
+  min_instances: 1
+  max_instances: 10
+  target_cpu_utilization: 0.7
+  target_throughput_utilization: 0.7
+
+# Resources
+resources:
+  cpu: 1
+  memory_gb: 2
+  disk_size_gb: 10
+
+# Health checks
+readiness_check:
+  path: "/health"
+  check_interval_sec: 5
+  timeout_sec: 4
+  failure_threshold: 2
+  success_threshold: 2
+
+liveness_check:
+  path: "/health"
+  check_interval_sec: 30
+  timeout_sec: 4
+  failure_threshold: 4
+  success_threshold: 2
+
+# Network
+network:
+  name: default
+
+# Entrypoint
+entrypoint: gunicorn -b :$PORT api.app:app --timeout 300 --workers 4
